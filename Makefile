@@ -11,7 +11,7 @@ include .env
 
 # Docker image and container names
 CONTAINER     = contextmaps_terrain_rgb
-IMAGE         = ctx-terrain-rgb
+IMAGE         = franmartin/ctx-terrain-rgb
 export CONTAINER
 export IMAGE
 
@@ -42,8 +42,8 @@ help:
 
 .PHONY: build-docker
 build-docker:
-	@echo "Building the docker image from the dockerfile..."
-	@docker build -t $(IMAGE) .
+	@echo "Pulling and building the docker image..."
+	@docker pull $(IMAGE)
 	@echo "Image builded"
 
 .PHONY: run-docker-shell

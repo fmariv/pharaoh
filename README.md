@@ -18,10 +18,16 @@ OUTPUT_FILE        # name of the output mbtiles file
 
 ##### Build
 
-Then, you can build the container
+Then, you can build the container pulling the image from the [Docker Hub](https://hub.docker.com/r/franmartin/ctx-terrain-rgb)
 
 ```shell
 make build-docker
+```
+
+Or build it from the dockerfile
+
+```shell
+docker build -t ctx-terrain-rgb .
 ```
 
 ##### Generate pyramid
