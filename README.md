@@ -1,25 +1,42 @@
 # ContextMaps terrain RGB
 
-Tool that converts a geo-tiff file containing Digital Elevation Model (DEM) data into a pyramid of png files.
+Tool that converts a geo-tiff file containing Digital Elevation Model (DEM) data into a pyramid of png files with RGB data.
 
 ## Usage
 
-Build the container
+##### Set up 
 
-```shell
-docker build -t ctx-terrain-rgb .
+First of all, there are some environment variables that need to be established in the ```.env``` file, which are the following:
+
+```
+DOCKER_MOUNT       # local folder where the docker container is mounted
+MIN_ZOOM           # min zoom to generate
+MAX_ZOOM           # max zoom to generate
+INPUT_FILE         # name of the input raster file
+OUTPUT_FILE        # name of the output mbtiles file
 ```
 
-Start the docker container and mount a local folder ```/path/to/our/folder``` 
-with the  GeoTIFF inside to the folder ```/opt/dem``` within the container's filesystem. ```rio``` is the
- name of the image and we want to execute the shell ```bash``` inside the container.
+##### Build
+
+Then, you can build the container
 
 ```shell
-docker run --rm -it -v /path/to/our/folder:/opt/dem rio bash
+make build-docker
 ```
 
-Generate the tile pyramid within zooms 6 and 8
+##### Generate pyramid
+
+And simply generate the tile pyramid, transforming the greyscale data into RGB data
 
 ```shell
-rio rgbify --min-z 6 --max-z 8 input.tif output.mbtiles
+make generate-pyramid
 ```
+
+##### Extras
+
+You can run a bash shell inside the docker container if you want to
+
+```shell
+make run-docker-shell
+```
+
