@@ -7,7 +7,7 @@ Tool that converts a geo-tiff file containing Digital Elevation Model (DEM) data
 Build the container
 
 ```shell
-docker build -t rio .
+docker build -t ctx-terrain-rgb .
 ```
 
 Start the docker container and mount a local folder ```/path/to/our/folder``` 
