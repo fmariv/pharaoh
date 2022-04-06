@@ -15,7 +15,7 @@ define HELP_MESSAGE
  ContextMaps terrain RGB  https://github.com/fmariv/contextmaps-terrain-rgb
 
 Hints for tile pyramid generation:
-  make build-pyramid                   # build the tile pyramid                    
+  make generate-pyramid                # build the tile pyramid                    
 
 Hints for Docker management:
   make build-docker                    # build the docker container from the dockerfile
@@ -36,14 +36,21 @@ help:
 
 .PHONY: build-docker
 build-docker:
+    echo "Building the docker container from the dockerfile..."
 	docker build -t ctx-terrain-rgb .
+	echo "Container builded"
 
 .PHONY: run-docker-shell
+run-docker-shell:
 	docker run --rm -it -v $(DOCKER_MOUNT):/opt/dem ctx-terrain-rgb bash
 
-.PHONY: build-pyramid
+.PHONY: generate-pyramid
+generate-pyramid:
+    echo "Generating the tile pyramid..."
 	docker run --rm -it -v $(DOCKER_MOUNT):/opt/dem ctx-terrain-rgb bash
 	rio rgbify --min-z $(MIN_ZOOM) --max-z $(MAX_ZOOM) $(INPUT_FILE) $(OUTPUT_FILE)  
+	exit
+	echo "Tile pyramid generated"
 
 .PHONY: list-docker-images
 list-docker-images:
