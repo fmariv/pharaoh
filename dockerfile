@@ -1,5 +1,5 @@
 FROM osgeo/gdal:ubuntu-small-latest
-
+ENTRYPOINT [ "/bin/bash", "-l", "-c" ]
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
 ## install rio and a working rio-rgbify build that fixes the issue https://github.com/mapbox/rio-rgbify/issues/14
