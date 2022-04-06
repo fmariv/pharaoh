@@ -64,4 +64,4 @@ list-docker-images:
 .PHONY: remove-docker-images
 remove-docker-images:
 	@echo "Deleting all related docker image(s)..."
-	@docker images rm $(IMAGE)
+	@docker image rm $(IMAGE)
