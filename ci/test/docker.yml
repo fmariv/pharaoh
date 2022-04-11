@@ -1,0 +1,2 @@
+variables:
+  IMAGE: franmartin/ctx-terrain-rgb

@@ -1,7 +1,15 @@
 stages:
   - build
+  - test
 
-docker_build:
+include: '/ci/test/docker.yml'
+
+build:
   stage: build
   script:
-    - docker build -t ctx-terrain-rgb .
+    - docker build -t $IMAGE .
+
+test:
+  stage: test
+  script:
+    - docker run --rm -it $IMAGE echo 'Image builded correctly'
