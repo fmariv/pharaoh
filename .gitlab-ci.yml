@@ -2,6 +2,9 @@ stages:
   - build
   - test
 
+services:
+  - docker:19.03.5-dind
+
 include: '/ci/test/docker.yml'
 
 build:
