@@ -1,6 +1,6 @@
 # ContextMaps terrain RGB
 
-Tool that converts a geo-tiff file containing Digital Elevation Model (DEM) data into a pyramid of png files with RGB data.
+Tool that converts a geo-tiff file containing Digital Elevation Model (DEM) data into a pyramid of png files.
 
 ## Usage
 
@@ -32,10 +32,16 @@ docker build -t ctx-terrain-rgb .
 
 ##### Generate pyramid
 
-And simply generate the tile pyramid, transforming the greyscale data into RGB data
+And simply generate the tile pyramid 
 
 ```shell
 make generate-pyramid
+```
+
+You can also generate the tile pyramid transforming the greyscale data into RGB data
+
+```shell
+make generate-pyramid-rgb
 ```
 
 ##### Extras
