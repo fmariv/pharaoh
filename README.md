@@ -17,6 +17,12 @@ OUTPUT_FILE        # name of the output mbtiles file
 
 ##### Build
 
+Init some necessary directories
+
+```shell
+make
+```
+
 Then, you can build the container pulling the image from the [Docker Hub](https://hub.docker.com/r/franmartin/ctx-terrain-rgb)
 
 ```shell
