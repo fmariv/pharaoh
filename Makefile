@@ -37,9 +37,16 @@ export HELP_MESSAGE
 #  TARGETS
 #
 
+.PHONY: all
+all: init-dirs
+
 .PHONY: help
 help:
 	@echo "$$HELP_MESSAGE" | less
+ 
+.PHONY: init-dirs
+init-dirs:
+	@mkdir -p data
 
 .PHONY: build-docker
 build-docker:
