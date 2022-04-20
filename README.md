@@ -9,7 +9,6 @@ Tool that converts a geo-tiff file containing Digital Elevation Model (DEM) data
 First of all, there are some environment variables that need to be established in the ```.env``` file, which are the following:
 
 ```
-DOCKER_MOUNT       # local folder where the docker container is mounted
 MIN_ZOOM           # min zoom to generate
 MAX_ZOOM           # max zoom to generate
 INPUT_FILE         # name of the input raster file
@@ -32,7 +31,7 @@ docker build -t ctx-terrain-rgb .
 
 ##### Generate pyramid
 
-And simply generate the tile pyramid 
+And simply generate the tile pyramid. By default, it is generated in the data directory. 
 
 ```shell
 make generate-pyramid

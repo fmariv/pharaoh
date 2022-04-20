@@ -49,19 +49,19 @@ build-docker:
 
 .PHONY: run-docker-shell
 run-docker-shell:
-	@docker run --rm -it --name $(CONTAINER) -v $(DOCKER_MOUNT):/opt/dem $(IMAGE) bash
+	@docker run --rm -it --name $(CONTAINER) -v $$(pwd)/data:/opt/dem $(IMAGE) bash
 
 .PHONY: generate-pyramid
 generate-pyramid:
 	@echo "Generating the tile pyramid..."
-	@docker run --rm -it --name $(CONTAINER) -v $(DOCKER_MOUNT):/opt/dem $(IMAGE) \
+	@docker run --rm -it --name $(CONTAINER) -v $$(pwd)/data:/opt/dem $(IMAGE) \
 	 "rio mbtiles --zoom-levels $(MIN_ZOOM)..$(MAX_ZOOM) opt/dem/$(INPUT_FILE) opt/dem/$(OUTPUT_FILE)"
 	@echo "Tile pyramid generated"
 
 .PHONY: generate-pyramid-rgb
 generate-pyramid-rgb:
 	@echo "Generating the tile pyramid in RGB..."
-	@docker run --rm -it --name $(CONTAINER) -v $(DOCKER_MOUNT):/opt/dem $(IMAGE) \
+	@docker run --rm -it --name $(CONTAINER) -v $$(pwd)/data:/opt/dem $(IMAGE) \
 	 "rio rgbify -b -10000 -i 0.1 --min-z $(MIN_ZOOM) --max-z $(MAX_ZOOM) opt/dem/$(INPUT_FILE) opt/dem/$(OUTPUT_FILE)"
 	@echo "Tile RGB pyramid generated"
 
