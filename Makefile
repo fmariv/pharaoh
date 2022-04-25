@@ -10,8 +10,8 @@ SHELL         = /bin/bash
 include .env
 
 # Docker image and container names
-CONTAINER     = contextmaps_terrain_rgb
-IMAGE         = franmartin/ctx-terrain-rgb
+CONTAINER     = pharaoh
+IMAGE         = franmartin/pharaoh
 export CONTAINER
 export IMAGE
 

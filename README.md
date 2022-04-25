@@ -27,7 +27,7 @@ Init some necessary directories
 make
 ```
 
-Then, you can build the container pulling the image from the [Docker Hub](https://hub.docker.com/r/franmartin/ctx-terrain-rgb)
+Then, you can build the container pulling the image from the [Docker Hub](https://hub.docker.com/r/franmartin/pharaoh)
 
 ```shell
 make build-docker
