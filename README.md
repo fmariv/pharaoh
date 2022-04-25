@@ -1,5 +1,7 @@
 # Pharaoh
 
+![pharaoh](favicon.png "Pharaoh")
+
 Tool that converts a geo-tiff file containing Digital Elevation Model (DEM) data into a pyramid of png files.
 
 ## Usage
