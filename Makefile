@@ -22,6 +22,7 @@ define HELP_MESSAGE
 
 Hints for tile pyramid generation:
   make generate-pyramid                # generate a tile pyramid
+  make generate-pyramid-png            # generate a tile pyramid in PNG format
   make generate-pyramid-rgb            # generate the tile pyramid in RGB data
 
 Hints for Docker management:
@@ -64,6 +65,13 @@ generate-pyramid:
 	@docker run --rm -it --name $(CONTAINER) -v $$(pwd)/data:/opt/dem $(IMAGE) \
 	 "rio mbtiles --zoom-levels $(MIN_ZOOM)..$(MAX_ZOOM) opt/dem/$(INPUT_FILE) opt/dem/$(OUTPUT_FILE)"
 	@echo "Tile pyramid generated"
+
+.PHONY: generate-pyramid-png
+generate-pyramid-png:
+	@echo "Generating the tile pyramid in PNG..."
+	@docker run --rm -it --name $(CONTAINER) -v $$(pwd)/data:/opt/dem $(IMAGE) \
+	 "rio mbtiles -f PNG --co ZLEVEL=9 --exclude-empty-tiles --dst-nodata 0.0 --tile-size 512 --zoom-levels $(MIN_ZOOM)..$(MAX_ZOOM) opt/dem/$(INPUT_FILE) opt/dem/$(OUTPUT_FILE)"
+	@echo "Tile PNG pyramid generated"
 
 .PHONY: generate-pyramid-rgb
 generate-pyramid-rgb:
