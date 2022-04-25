@@ -4,7 +4,7 @@
     <img src="favicon.png" alt="Pharaoh logo">
 </p>
 
-Tool that converts a geo-tiff file containing Digital Elevation Model (DEM) data into a pyramid of png files.
+Tool that converts a raster file into a raster MBTiles pyramid.
 
 ## Usage
 

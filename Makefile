@@ -17,12 +17,13 @@ export IMAGE
 
 
 define HELP_MESSAGE
-==============================================================================
+====================================================================================================
  ContextMaps terrain RGB  https://github.com/fmariv/contextmaps-terrain-rgb
 
 Hints for tile pyramid generation:
   make generate-pyramid                # generate a tile pyramid
   make generate-pyramid-png            # generate a tile pyramid in PNG format
+  make generate-pyramid-png-nodata     # generate a tile pyramid in PNG format with no data as 0
   make generate-pyramid-rgb            # generate the tile pyramid in RGB data
 
 Hints for Docker management:
@@ -30,7 +31,7 @@ Hints for Docker management:
   make run-docker-shell                # execute the shell bash inside the container
   make remove-docker-images            # remove docker images
   make list-docker-images              # show a list of available docker images
-==============================================================================
+====================================================================================================
 endef
 export HELP_MESSAGE
 
@@ -69,6 +70,13 @@ generate-pyramid:
 .PHONY: generate-pyramid-png
 generate-pyramid-png:
 	@echo "Generating the tile pyramid in PNG..."
+	@docker run --rm -it --name $(CONTAINER) -v $$(pwd)/data:/opt/dem $(IMAGE) \
+	 "rio mbtiles -f PNG --co ZLEVEL=9 --tile-size 512 --zoom-levels $(MIN_ZOOM)..$(MAX_ZOOM) opt/dem/$(INPUT_FILE) opt/dem/$(OUTPUT_FILE)"
+	@echo "Tile PNG pyramid generated"
+
+.PHONY: generate-pyramid-png-nodata
+generate-pyramid-png-nodata:
+	@echo "Generating the tile pyramid in PNG with no data values as 0..."
 	@docker run --rm -it --name $(CONTAINER) -v $$(pwd)/data:/opt/dem $(IMAGE) \
 	 "rio mbtiles -f PNG --co ZLEVEL=9 --exclude-empty-tiles --dst-nodata 0.0 --tile-size 512 --zoom-levels $(MIN_ZOOM)..$(MAX_ZOOM) opt/dem/$(INPUT_FILE) opt/dem/$(OUTPUT_FILE)"
 	@echo "Tile PNG pyramid generated"
