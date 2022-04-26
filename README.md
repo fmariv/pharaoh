@@ -19,12 +19,17 @@ INPUT_FILE         # name of the input raster file
 OUTPUT_FILE        # name of the output mbtiles file
 ```
 
+Also, you can ask for a help message if you need
+```shell
+make help
+```
+
 ### Build
 To work on Pharaoh you need Docker.
 
 - Install [Docker](https://docs.docker.com/engine/installation/). Minimum version is 1.12.3+.
 
-First of all, you need to initialize some necessary directories
+To begin with, you need to initialize some necessary directories
 ```shell
 make
 ```
@@ -38,6 +43,8 @@ Or build it from the dockerfile
 ```shell
 docker build -t pharaoh .
 ```
+
+The docker image is based on ```osgeo/gdal```. For the raster data management, [rasterio](https://rasterio.readthedocs.io/en/latest/) and a few plugins from the [RasterIO Plugin Registry](https://github.com/mapbox/rasterio/wiki/Rio-plugin-registry), such as rio-mbtiles and rio-rgbify, are installed.
 
 ### Generate pyramid
 And simply generate the tile pyramid. By default, it is generated in the data directory. 
@@ -65,7 +72,7 @@ make run-docker-shell
 If you go from top to bottom you can be sure that it will generate a .mbtiles file out of a raster file
 ```
 make                        # generate necessary directories
-make build-docker           # start up the container
+make build-docker           # build the docker image
 make generate-pyramid       # generate pyramid
 ```
 
@@ -73,4 +80,4 @@ make generate-pyramid       # generate pyramid
 [Institut Cartogràfic i Geològic de Catalunya](https://www.icgc.cat/)
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
