@@ -4,11 +4,11 @@
     <img src="favicon.png" alt="Pharaoh logo">
 </p>
 
-Tool that converts a raster file into a raster MBTiles pyramid.
+Pharaoh is a tool that allows to easily deploy an environment able to work with raster data in any format. It is strongly focused on the generation of raster MBTiles pyramids with few command lines and several output options, such as transforming the greyscale data into RGB or generating the MBTiles in PNG format instead of JPEG.
 
 ## Usage
 
-##### Set up 
+### Set up 
 
 First of all, there are some environment variables that need to be established in the ```.env``` file, which are the following:
 
@@ -19,45 +19,58 @@ INPUT_FILE         # name of the input raster file
 OUTPUT_FILE        # name of the output mbtiles file
 ```
 
-##### Build
+### Build
+To work on Pharaoh you need Docker.
 
-Init some necessary directories
+- Install [Docker](https://docs.docker.com/engine/installation/). Minimum version is 1.12.3+.
 
+First of all, you need to initialize some necessary directories
 ```shell
 make
 ```
 
 Then, you can build the container pulling the image from the [Docker Hub](https://hub.docker.com/r/franmartin/pharaoh)
-
 ```shell
 make build-docker
 ```
 
 Or build it from the dockerfile
-
 ```shell
-docker build -t ctx-terrain-rgb .
+docker build -t pharaoh .
 ```
 
-##### Generate pyramid
-
+### Generate pyramid
 And simply generate the tile pyramid. By default, it is generated in the data directory. 
-
 ```shell
 make generate-pyramid
 ```
 
 You can also generate the tile pyramid transforming the greyscale data into RGB data
-
 ```shell
 make generate-pyramid-rgb
 ```
 
-##### Extras
+Or generate it in PNG format, removing the ```nodata``` values.
+```shell
+make generate-pyramid-png
+```
 
-You can run a bash shell inside the docker container if you want to
-
+### Custom
+You can run a bash shell inside the docker container if you want to run some more detailed commands
 ```shell
 make run-docker-shell
 ```
 
+### Workflow to generate tile pyramids
+If you go from top to bottom you can be sure that it will generate a .mbtiles file out of a raster file
+```
+make                        # generate necessary directories
+make build-docker           # start up the container
+make generate-pyramid       # generate pyramid
+```
+
+## Authors
+[Institut Cartogràfic i Geològic de Catalunya](https://www.icgc.cat/)
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
